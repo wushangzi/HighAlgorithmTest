@@ -35,14 +35,14 @@ public class MainTest {
 
         System.out.println ("begin");
         long beginTime;
-        System.gc ();
+        /*System.gc ();
 
         beginTime = System.currentTimeMillis ();
         HashSet hashSetLeft = new HashSet (leftCompare);
         HashSet hashSetRight = new HashSet (compare);
         Sets.SetView intersection = Sets.intersection (hashSetLeft, hashSetRight);
         List<Integer> integerList = addInteger (intersection);
-        System.out.println ("google set use time:" + (System.currentTimeMillis () - beginTime));
+        System.out.println ("google set use time:" + (System.currentTimeMillis () - beginTime));*/
 
 
         /*
@@ -52,11 +52,16 @@ public class MainTest {
         resultList = addInteger (resultList);
         System.out.println ("getIntersection use time:" + (System.currentTimeMillis () - beginTime));*/
 
-        System.gc ();
+        /*System.gc ();
 
         beginTime = System.currentTimeMillis ();
         getIntersectionLocal (leftArrayCompareList, rightArrayCompareList);
         System.out.println ("getIntersectionLocal use time:" + (System.currentTimeMillis () - beginTime));
+*/
+        System.gc ();
+        beginTime = System.currentTimeMillis ();
+        getHighIntersectionLocal (leftArrayCompareList, rightArrayCompareList);
+        System.out.println ("getHighIntersectionLocal use time:" + (System.currentTimeMillis () - beginTime));
     }
 
     private static List<Integer> getIntersection(List<Integer> leftCompare, List<Integer> compare) {
@@ -85,6 +90,12 @@ public class MainTest {
     private static int[] getIntersectionLocal(int[] leftCompare, int[] compare) {
         algorithmUtils algorithmUtils = new algorithmUtils ();
         int[] intersectionSet = algorithmUtils.getIntersectionSet (leftCompare, compare);
+        return intersectionSet;
+    }
+
+    private static int[] getHighIntersectionLocal(int[] leftCompare, int[] compare) {
+        algorithmUtils algorithmUtils = new algorithmUtils ();
+        int[] intersectionSet = algorithmUtils.getHighPerformanceIntersectionSetSorted (leftCompare, compare);
         return intersectionSet;
     }
 
